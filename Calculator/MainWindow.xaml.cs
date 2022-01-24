@@ -26,11 +26,6 @@ namespace Calculator
         public MainWindow()
         {
             InitializeComponent();
-
-            acBtn.Click += AcBtn_Click;
-            ToggleNegativeBtn.Click += ToggleNegativeBtn_Click;
-            percentBtn.Click += PercentBtn_Click;
-            equalBtn.Click += EqualBtn_Click;
         }
 
         private void EqualBtn_Click(object sender, RoutedEventArgs e)

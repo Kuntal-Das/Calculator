@@ -7,9 +7,28 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="525" Width="350">
     <Window.Resources>
-        <Style TargetType="Button">
-            <Setter Property="Margin" Value="5"/>
+        <Style TargetType="Button" x:Key="basicBtnStyle">
+            <Setter Property="Margin" Value="3"/>
+            <Setter Property="FontSize" Value="24"/>
         </Style>
+        <Style x:Key="numberBtnStyle" TargetType="Button" BasedOn="{StaticResource basicBtnStyle}">
+            <Setter Property="Background" Value="{StaticResource numbersBgColor}"/>
+            <Setter Property="Foreground" Value="{StaticResource btnForegroundColor}"/>
+        </Style>
+        <Style x:Key="operatorBtnStyle" TargetType="Button" BasedOn="{StaticResource numberBtnStyle}">
+            <Setter Property="Background" Value="{StaticResource operatorsBgColor}"/>
+            <Setter Property="FontSize" Value="30"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+        <Style x:Key="otherBtnStyle" TargetType="Button" BasedOn="{StaticResource basicBtnStyle}">
+            <Setter Property="Background" Value="LightGray"/>
+            <Setter Property="Foreground" Value="Black"/>
+        </Style>
+
+        <Style TargetType="Label">
+            <Setter Property="FontSize" Value="70"/>
+        </Style>
+
     </Window.Resources>
     <Grid Margin="10">
         <Grid.ColumnDefinitions>
@@ -30,83 +49,105 @@
         <Label x:Name="resultLbl"
                Grid.ColumnSpan="4"
                HorizontalAlignment="Right"
-               VerticalAlignment="Bottom"
-               FontSize="60">0</Label>
+               VerticalAlignment="Bottom">0</Label>
 
         <Button x:Name="acBtn" 
+                Click="AcBtn_Click"
+                Style="{StaticResource otherBtnStyle}"
                 Grid.Row="1">AC</Button>
         <Button x:Name="ToggleNegativeBtn"
+                Click="ToggleNegativeBtn_Click"
+                Style="{StaticResource otherBtnStyle}"
                 Grid.Row="1"
                 Grid.Column="1">+/-</Button>
         <Button x:Name="percentBtn" 
+                Click="PercentBtn_Click"
+                Style="{StaticResource otherBtnStyle}"
                 Grid.Row="1"
                 Grid.Column="2">%</Button>
         <Button x:Name="devideBtn"
                 Click="OperationBtn_Click"
+                Style="{StaticResource operatorBtnStyle}"
                 Grid.Row="1"
                 Grid.Column="3">/</Button>
 
         <Button x:Name="sevenBtn"
                 Click="NumberBtn_Click"
+                Style="{StaticResource numberBtnStyle}"
                 Grid.Row="2"
                 Grid.Column="0">7</Button>
         <Button x:Name="eightBtn"
                 Click="NumberBtn_Click"
+                Style="{StaticResource numberBtnStyle}"
                 Grid.Row="2"
                 Grid.Column="1">8</Button>
         <Button x:Name="nineBtn"
                 Click="NumberBtn_Click"
+                Style="{StaticResource numberBtnStyle}"
                 Grid.Row="2"
                 Grid.Column="2">9</Button>
         <Button x:Name="multiplicationBtn"
                 Click="OperationBtn_Click"
+                Style="{StaticResource operatorBtnStyle}"
                 Grid.Row="2"
                 Grid.Column="3">*</Button>
 
         <Button x:Name="fourBtn"
                 Click="NumberBtn_Click"
+                Style="{StaticResource numberBtnStyle}"
                 Grid.Row="3"
                 Grid.Column="0">4</Button>
         <Button x:Name="fiveBtn"
                 Click="NumberBtn_Click"
+                Style="{StaticResource numberBtnStyle}"
                 Grid.Row="3"
                 Grid.Column="1">5</Button>
         <Button x:Name="sixBtn"
                 Click="NumberBtn_Click"
+                Style="{StaticResource numberBtnStyle}"
                 Grid.Row="3"
                 Grid.Column="2">6</Button>
         <Button x:Name="minusBtn"
                 Click="OperationBtn_Click"
+                Style="{StaticResource operatorBtnStyle}"
                 Grid.Row="3"
                 Grid.Column="3">-</Button>
 
         <Button x:Name="oneBtn"
                 Click="NumberBtn_Click"
+                Style="{StaticResource numberBtnStyle}"
                 Grid.Row="4"
                 Grid.Column="0">1</Button>
         <Button x:Name="twoBtn"
                 Click="NumberBtn_Click"
+                Style="{StaticResource numberBtnStyle}"
                 Grid.Row="4"
                 Grid.Column="1">2</Button>
         <Button x:Name="threeBtn"
                 Click="NumberBtn_Click"
+                Style="{StaticResource numberBtnStyle}"
                 Grid.Row="4"
                 Grid.Column="2">3</Button>
         <Button x:Name="plusBtn"
                 Click="OperationBtn_Click"
+                Style="{StaticResource operatorBtnStyle}"
                 Grid.Row="4"
                 Grid.Column="3">+</Button>
 
         <Button x:Name="zeroBtn"
                 Click="NumberBtn_Click"
+                Style="{StaticResource numberBtnStyle}"
                 Grid.Row="5"
                 Grid.Column="0"
                 Grid.ColumnSpan="2">0</Button>
         <Button x:Name="dotBtn"
+                Click="dotBtn_Click"
+                Style="{StaticResource numberBtnStyle}"
                 Grid.Row="5"
-                Grid.Column="2" Click="dotBtn_Click">.</Button>
+                Grid.Column="2">.</Button>
         <Button x:Name="equalBtn"
                 Click="EqualBtn_Click"
+                Style="{StaticResource operatorBtnStyle}"
                 Grid.Row="5"
                 Grid.Column="3">=</Button>
 
