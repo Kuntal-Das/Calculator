@@ -58,13 +58,22 @@ namespace Calculator
             resultLbl.Content = _result;
         }
 
+        // 50 + 5% = 52.5
+        // 80 + 10% = 88
         private void PercentBtn_Click(object sender, RoutedEventArgs e)
         {
-            if (!double.TryParse(resultLbl.Content.ToString(), out _lastNumber)) return;
 
-            _lastNumber /= 100;
 
-            resultLbl.Content = _lastNumber;
+            double temp = 0;
+            if (!double.TryParse(resultLbl.Content.ToString(), out temp)) return;
+
+            if (_selectedOperator != SelectedOperator.Undefined && _lastNumber != 0)
+            {
+                temp = temp * _lastNumber;
+            }
+            temp /= 100;
+
+            resultLbl.Content = temp;
         }
 
         private void ToggleNegativeBtn_Click(object sender, RoutedEventArgs e)
@@ -151,6 +160,11 @@ namespace Calculator
         }
         public static double Divide(double a, double b)
         {
+            if (b == 0)
+            {
+                MessageBox.Show("Division by 0 is not supported", "Wrong operation", MessageBoxButton.OK, MessageBoxImage.Error);
+                return 0;
+            }
             return a / b;
         }
     }
