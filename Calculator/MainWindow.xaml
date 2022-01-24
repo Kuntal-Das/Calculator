@@ -42,57 +42,71 @@
                 Grid.Row="1"
                 Grid.Column="2">%</Button>
         <Button x:Name="devideBtn"
+                Click="OperationBtn_Click"
                 Grid.Row="1"
                 Grid.Column="3">/</Button>
 
         <Button x:Name="sevenBtn"
+                Click="NumberBtn_Click"
                 Grid.Row="2"
-                Grid.Column="0"
-                Click="sevenBtn_Click">7</Button>
+                Grid.Column="0">7</Button>
         <Button x:Name="eightBtn"
+                Click="NumberBtn_Click"
                 Grid.Row="2"
                 Grid.Column="1">8</Button>
         <Button x:Name="nineBtn"
+                Click="NumberBtn_Click"
                 Grid.Row="2"
                 Grid.Column="2">9</Button>
         <Button x:Name="multiplicationBtn"
+                Click="OperationBtn_Click"
                 Grid.Row="2"
                 Grid.Column="3">*</Button>
 
         <Button x:Name="fourBtn"
+                Click="NumberBtn_Click"
                 Grid.Row="3"
                 Grid.Column="0">4</Button>
         <Button x:Name="fiveBtn"
+                Click="NumberBtn_Click"
                 Grid.Row="3"
                 Grid.Column="1">5</Button>
         <Button x:Name="sixBtn"
+                Click="NumberBtn_Click"
                 Grid.Row="3"
                 Grid.Column="2">6</Button>
         <Button x:Name="minusBtn"
+                Click="OperationBtn_Click"
                 Grid.Row="3"
                 Grid.Column="3">-</Button>
 
         <Button x:Name="oneBtn"
+                Click="NumberBtn_Click"
                 Grid.Row="4"
                 Grid.Column="0">1</Button>
         <Button x:Name="twoBtn"
+                Click="NumberBtn_Click"
                 Grid.Row="4"
                 Grid.Column="1">2</Button>
         <Button x:Name="threeBtn"
+                Click="NumberBtn_Click"
                 Grid.Row="4"
                 Grid.Column="2">3</Button>
         <Button x:Name="plusBtn"
+                Click="OperationBtn_Click"
                 Grid.Row="4"
                 Grid.Column="3">+</Button>
 
         <Button x:Name="zeroBtn"
+                Click="NumberBtn_Click"
                 Grid.Row="5"
                 Grid.Column="0"
                 Grid.ColumnSpan="2">0</Button>
         <Button x:Name="dotBtn"
                 Grid.Row="5"
-                Grid.Column="2">.</Button>
+                Grid.Column="2" Click="dotBtn_Click">.</Button>
         <Button x:Name="equalBtn"
+                Click="EqualBtn_Click"
                 Grid.Row="5"
                 Grid.Column="3">=</Button>
 
