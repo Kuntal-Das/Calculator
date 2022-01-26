@@ -16,4 +16,8 @@
     <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Model\" />
+  </ItemGroup>
+
 </Project>
