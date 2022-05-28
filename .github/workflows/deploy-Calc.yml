@@ -3,7 +3,7 @@ name: "Deploy Calcualtor"
 on:
   push:
     tags:
-      - "Calc-v*"
+      - "V*.*.*"
 
 env:
    PROJECT_PATH: Calculator/Calculator.csproj
