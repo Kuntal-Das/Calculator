@@ -30,8 +30,9 @@ jobs:
       - name: Publish Project
         run: dotnet publish ${{ env.PROJECT_PATH }} -c Release --no-build
 
+      - run: cd ${{ env.PUBLISH_PATH }}
+
       - name: Zip Binaries
-        run: cd ${{ env.PUBLISH_PATH }}
         run: tar.exe -acvf binaries.zip publish
 
       - name: Create Release
