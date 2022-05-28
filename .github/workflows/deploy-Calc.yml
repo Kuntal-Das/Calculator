@@ -61,4 +61,4 @@ jobs:
           # The URL for uploading assets to the release
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           # The path to the asset you want to upload
-          asset_path: /Calculator/bin/Release/net5.0-windows/win-x64/publish/*.exe
+          asset_path: /Calculator/bin/Release/net5.0-windows/win-x64/publish/
