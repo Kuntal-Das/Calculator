@@ -7,7 +7,7 @@ on:
 
 env:
    PROJECT_PATH: Calculator/Calculator.csproj
-   PUBLISH_PATH: Calculator/bin/Release/net5.0-windows/win-x64/publish/
+   PUBLISH_PATH: Calculator/bin/Release/net5.0-windows/win-x64/
 
 jobs:
   deploy:
@@ -30,15 +30,11 @@ jobs:
       - name: Publish Project
         run: dotnet publish ${{ env.PROJECT_PATH }} -c Release --no-build
 
-      - name: Install zip
-        uses: montudor/action-zip@v1
-
       - name: Zip Binaries
-        run: zip -qq -r binaries.zip dist node_modules package.json
-        working-directory: ${{ env.PUBLISH_PATH }}
+        run: cd ${{ env.PUBLISH_PATH }}
+        run: tar.exe -acvf binaries.zip publish
 
       - name: Create Release
         uses: softprops/action-gh-release@v1
         with:
-          files: binaries.zip
-          
+          files: ${{ env.PUBLISH_PATH }}/binaries.zip
