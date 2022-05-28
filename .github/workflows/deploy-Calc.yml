@@ -28,7 +28,7 @@ jobs:
       - name: Publish
         run: dotnet publish ${{ env.PROJECT_PATH }} -c Release --no-build
 
-       - name: Release
+      - name: Release
         uses: softprops/action-gh-release@v1
         with:
           files: Calculator/bin/Release/net5.0-windows/win-x64/publish/*
