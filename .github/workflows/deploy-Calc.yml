@@ -32,7 +32,7 @@ jobs:
       #   uses: actions/create-release@v1
       #   id: create_release
       #   env:
-      #       GITHUB_TOKEN: ${{ env.GITHUB_TOKEN }}
+      #       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       #   with:
       #       tag_name: ${{ github.ref }}
       #       release_name: ${{ github.ref }}
@@ -41,12 +41,12 @@ jobs:
         id: create_release
         uses: "marvinpinto/action-automatic-releases@latest"
         with:
-          repo_token: "${{ env.GITHUB_TOKEN }}"
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
           draft: true
 
       # - uses: csexton/release-asset-action@v2
       #   with:
-      #       github-token: ${{ env.GITHUB_TOKEN }}
+      #       github-token: ${{ secrets.GITHUB_TOKEN }}
       #       pattern: /Calculator/Calculator/bin/Release/net5.0-windows/win-x64/publish/*.exe
       #       release-url: ${{ steps.create_release.outputs.upload_url }}
 
@@ -56,7 +56,7 @@ jobs:
         uses: shogo82148/actions-upload-release-asset@v1.6.2
         with:
           # The API token for GitHub
-          github_token: ${{ env.GITHUB_TOKEN }} # default is ${{ github.token }}
+          github_token: ${{ secrets.GITHUB_TOKEN }} # default is ${{ github.token }}
           # The URL for uploading assets to the release
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           # The path to the asset you want to upload
