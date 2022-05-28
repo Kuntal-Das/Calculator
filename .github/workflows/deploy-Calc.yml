@@ -7,44 +7,38 @@ on:
 
 env:
    PROJECT_PATH: Calculator/Calculator.csproj
+   PUBLISH_PATH: Calculator/bin/Release/net5.0-windows/win-x64/publish/
 
 jobs:
   deploy:
     runs-on: windows-latest
     steps:
-      - uses: actions/checkout@v2
+      - name: git checkout
+        uses: actions/checkout@v2
 
       - name: Setup .NET Core SDK
         uses: actions/setup-dotnet@v2.1.0
         with:
           dotnet-version: 5.0.*
 
-      - name: Restore
+      - name: Restore Project
         run: dotnet restore ${{ env.PROJECT_PATH }}
 
-      - name: Build
+      - name: Build Project
         run: dotnet build ${{ env.PROJECT_PATH }} -c Release --no-restore
 
-      - name: Publish
+      - name: Publish Project
         run: dotnet publish ${{ env.PROJECT_PATH }} -c Release --no-build
 
-      - name: Release
+      - name: Install zip
+        uses: montudor/action-zip@v1
+
+      - name: Zip Binaries
+        run: zip -qq -r binaries.zip dist node_modules package.json
+        working-directory: ${{ env.PUBLISH_PATH }}
+
+      - name: Create Release
         uses: softprops/action-gh-release@v1
         with:
-          files: Calculator/bin/Release/net5.0-windows/win-x64/publish/*
-
-      # - name: Create a Release
-      #   id: create_release
-      #   uses: "marvinpinto/action-automatic-releases@latest"
-      #   with:
-      #     repo_token: "${{ secrets.GITHUB_TOKEN }}"
-      #     automatic_release_tag: "${{ github.ref }}"
-      #     draft: true
-
-      # - name: Upload Release Asset
-      #   uses: shogo82148/actions-upload-release-asset@v1.6.2
-      #   with:
-      #     github_token: ${{ secrets.GITHUB_TOKEN }} # default is ${{ github.token }}
-      #     upload_url: ${{ steps.create_release.outputs.upload_url }}
-      #     asset_path: Calculator/bin/Release/net5.0-windows/win-x64/publish/
-
+          files: binaries.zip
+          
