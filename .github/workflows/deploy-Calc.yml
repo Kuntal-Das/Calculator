@@ -6,7 +6,7 @@ on:
       - "Calc-v*"
 
 env:
-   PROJECT_PATH: dotnet restore Calculator/Calculator/Calculator.csproj
+   PROJECT_PATH: dotnet restore Calculator/Calculator.csproj
 
 jobs:
   deploy:
@@ -14,16 +14,32 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name : dotnet Set-Up
-        uses: actions/setup-dotnet@v1
+      - name: Setup .NET Core SDK
+        uses: actions/setup-dotnet@v2.1.0
         with:
-            dotnet-version: 5.0.x
+          # Optional SDK version(s) to use. If not provided, will install global.json version when available. Examples: 2.2.104, 3.1, 3.1.x
+          dotnet-version: 5.0.*
+          # Optional global.json location, if your global.json isn't located in the root of the repo.
+          # global-json-file: # optional
+          # # Optional package source for which to set up authentication. Will consult any existing NuGet.config in the root of the repo and provide a temporary NuGet.config using the NUGET_AUTH_TOKEN environment variable as a ClearTextPassword
+          # source-url: # optional
+          # # Optional OWNER for using packages from GitHub Package Registry organizations/users other than the current repository's owner. Only used if a GPR URL is also provided in source-url
+          # owner: # optional
+          # # Optional NuGet.config location, if your NuGet.config isn't located in the root of the repo.
+          # config-file: # optional
+          # # Whether prerelease versions should be matched with non-exact versions (for example 5.0.0-preview.6 being matched by 5, 5.0, 5.x or 5.0.x). Defaults to false if not provided.
+          # include-prerelease: # optional
             
-      - run: dotnet restore ${{ env.PROJECT_PATH }}
+      - run: ls
+      
+      - name: Restore
+        run: dotnet restore ${{ env.PROJECT_PATH }}
 
-      - run: dotnet build ${{ env.PROJECT_PATH }} -c Release --no-restore
+      - name: Build
+        run: dotnet build ${{ env.PROJECT_PATH }} -c Release --no-restore
 
-      - run: dotnet publish ${{ env.PROJECT_PATH }} -c Release --self-contained -r win-x64 -p:PublishSingleFile=true --no-build --no-restore
+      - name: Publish
+        run: dotnet publish ${{ env.PROJECT_PATH }} -c Release --self-contained -r win-x64 -p:PublishSingleFile=true --no-build --no-restore
 
       - name: Create Release
         uses: actions/create-release@v1
@@ -50,7 +66,7 @@ jobs:
           # The URL for uploading assets to the release
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           # The path to the asset you want to upload
-          asset_path: /Calculator/Calculator/bin/Release/net5.0-windows/win-x64/publish/*.exe
+          asset_path: /Calculator/bin/Release/net5.0-windows/win-x64/publish/*.exe
           # The name of the asset you want to upload
           # asset_name: # optional
           # # The content-type of the asset you want to upload. See the supported Media Types here: https://www.iana.org/assignments/media-types/media-types.xhtml for more information
