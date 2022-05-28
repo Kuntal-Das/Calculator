@@ -6,7 +6,7 @@ on:
       - "Calc-v*"
 
 env:
-   PROJECT_PATH: dotnet restore Calculator/Calculator.csproj
+   PROJECT_PATH: Calculator/Calculator.csproj
 
 jobs:
   deploy:
@@ -31,7 +31,7 @@ jobs:
           # include-prerelease: # optional
             
       - run: ls
-      
+
       - name: Restore
         run: dotnet restore ${{ env.PROJECT_PATH }}
 
